@@ -8,7 +8,14 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('Un pato se unio!', socket.id);
+  socket.on('cuak', function(location){
+    const _location = JSON.parse(location)
+    console.log(
+      'PATO:', 
+      `Latitude: ${_location.coords.longitude} - Longitud: ${_location.coords.longitude}`
+    );
+  });
 });
 
 http.listen(port, function(){
